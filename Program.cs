@@ -11,6 +11,9 @@ namespace ADO_employee_Payroll
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Payroll Services using ADO!");
+            //Create oobject for Employee Repository
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            employeeRepository.GetSqlData();
         }
     }
 }
