@@ -14,7 +14,6 @@ namespace ADO_employee_Payroll
         public static string connection = @"Server=LAPTOP-ABMNAC9K\SQLEXPRESS;Database=payroll;Trusted_Connection=True;";
         //Represents a connection to Sql Server Database
         SqlConnection sqlConnection = new SqlConnection(connection);
-
         //Create Object for EmployeeData Repository
         EmployeeDataManager employeeDataManager = new EmployeeDataManager();
         public void GetSqlData()
@@ -54,6 +53,27 @@ namespace ADO_employee_Payroll
             }
             //Close Connection
             sqlConnection.Close();
+        }
+        //UseCase 3: Update Salary to 3000000
+        public void UpdateSalaryQuery()
+        {
+            //Open Connection
+            sqlConnection.Open();
+            string query = "update employee_payroll set BasicPay=3000000 where EmployeeName= 'Ashaya Sivakumar'";
+            //Pass query to TSql
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            int result = sqlCommand.ExecuteNonQuery();
+            if (result != 0)
+            {
+                Console.WriteLine("Updated!");
+            }
+            else
+            {
+                Console.WriteLine("Not Updated!");
+            }
+            //Close Connection
+            sqlConnection.Close();
+            GetSqlData();
         }
     }
 }
